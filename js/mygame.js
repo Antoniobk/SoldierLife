@@ -286,7 +286,7 @@ window.addEventListener("load",function() {
       color: "white",
       family: "'Bangers', cursive",
       textBaseline: "alphabetic",
-      label: "Balas: " + stage.options.score
+      label: "Bullet: " + stage.options.score
     }));
     container.fit(20,15);
   });
@@ -346,6 +346,11 @@ window.addEventListener("load",function() {
       Q.animations('enemy', step);
       Q.stageScene('hud', 1, Q['Player'].p);
       Q.stageScene("Nivel 1");
-  });
+  },{
+      progressCallback: function(loaded,total) {
+        var element = document.getElementById("loading_progress");
+        element.style.width = Math.floor(loaded/total*100) + "%";
+      }
+    });
 
 });
