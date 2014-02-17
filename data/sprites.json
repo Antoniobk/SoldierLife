@@ -8,23 +8,28 @@
 }, "enemy": {
   "sx": 0,
   "sy": 32,
-  "cols": 9,
+  "cols": 6,
   "tilew": 32,
   "tileh": 32,
-  "frames": 9
+  "frames": 6
 }, "portal": {
-  "sx": 0,
-  "sy": 64,
+  "sx": 3,
+  "sy": 67,
   "cols": 1,
-  "tilew": 32,
-  "tileh": 32,
+  "tilew": 27,
+  "tileh": 27,
   "frames": 1
 }, "dot": {
   "sx": 0,
   "sy": 96,
   "cols": 1,
   "tilew": 32,
-  "tileh": 32,
+  "tileh": 32
+}, "fire": {
+  "sx": 8,
+  "sy": 139,
+  "cols": 1,
+  "tilew": 14,
+  "tileh": 11,
   "frames": 1
-  }
-}
+}}
