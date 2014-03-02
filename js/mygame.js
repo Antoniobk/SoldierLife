@@ -34,7 +34,7 @@ window.addEventListener("load",function() {
       this.p.sheet = sheetplayer;
       this.add("2d, animation");
       Q.input.on("fire", this, function(){
-        var xx = this.p.x , yy = this.p.y;
+        var xx = this.p.x , yy = this.p.y, vvx = this.p.vx, vvy = this.p.vy;
         if(this.p.direction=='left'){ xx -=8; } else
         if(this.p.direction=='right'){ xx +=8; } else
         if(this.p.direction=='up'){yy -=15;xx-=1;} else
@@ -47,25 +47,18 @@ window.addEventListener("load",function() {
               x: xx,
               y: yy,
               speed: 200,
-              collisionMask: SPRITE_ENEMY | SPRITE_TILES
+              collisionMask: SPRITE_ENEMY | SPRITE_TILES | SPRITE_STAIRS
             })
           );
           col_bullet=false;
         }
-
       });
       this.on("hit.sprite",function(collision) {
         if(collision.obj.isA("Portal")) {
           var portal = collision.obj;
           this.destroy();
-//          this.resetLevel();
           Q.stageScene("endLevel",1, { label: portal.nextLevel });
         }
-//        else if(collision.obj.isA("Dot")) {
-//          this.p.pBullet += 1;
-//          Q.stageScene('hud', 1, this.p);
-//          Q.audio.play('coin.mp3');
-//        }
         else if(collision.obj.isA("Enemy")){
           Q.audio.play('Game_Over.mp3',{loop:false});
           this.destroy();
@@ -266,13 +259,13 @@ window.addEventListener("load",function() {
       [4,1],[19,1],[5,6],[5,9],[5,13],[18,6],[18,9],
       [18,13],[6,20],[10,20],[13,20],[17,20],[6,26],[18,26]
     ];
-//    Q.stageScene('hud', 1, Q['Player'].p);
     var player = new Q.Player(Q.tilePos(12,2),"player2");
     for( var i = 0 ; i < _enemy.length; i++ ){
       stage.insert( new Q.Enemy( Q.tilePos(_enemy[i][0],_enemy[i][1]) ) );
     }
     stage.add("viewport").follow(stage.insert(player));
     stage.insert(new Q.Portal(Q.tilePos(11,30),"Nivel 2","portal2"));
+    // Q.audio.play('intro.mp3',{ loop: true });
   });
   Q.scene("Nivel 2",function(stage) {
     stage.insert(new Q.Repeater({ asset: "bg-nivel1.png"}));
@@ -311,27 +304,10 @@ window.addEventListener("load",function() {
     for( var i = 0 ; i < _enemy.length; i++ ){
       stage.insert( new Q.Enemy( Q.tilePos(_enemy[i][0],_enemy[i][1]) ) );
     }
-    stage.insert(new Q.Portal(Q.tilePos(14,30),"Nivel 1","portal1"));
+    stage.insert(new Q.Portal(Q.tilePos(12,60),"Nivel 1","portal1"));
     // Q.audio.play('intro.mp3',{ loop: true });
   });
-//  Q.scene('hud',function(stage) {
-//    var container = stage.insert(new Q.UI.Container({
-//      x: Q.width/2, y: 20, fill: "rgba(24,24,24,.8)", radius: 20
-//    }));
-//
-//    if(stage.options.pBullet == 0 || stage.options.pBullet === undefined ){
-//      stage.options.pBullet = 0;
-//    }
-//    var label = container.insert(new Q.UI.Text({
-//      x:0,
-//      y: 0,
-//      color: "white",
-//      family: "'Hanalei Fill', cursive",
-//      textBaseline: "alphabetic",
-//      label: "Bullet: " + stage.options.pBullet
-//    }));
-//    container.fit(20,15);
-//  });
+
 
   Q.scene("endLevel",function(stage) {
     var container = stage.insert(new Q.UI.Container({
@@ -391,7 +367,6 @@ window.addEventListener("load",function() {
       };
       Q.animations('player', stepPlayer);
       Q.animations('enemy', stepEnemy);
-//      Q.stageScene('hud', 1, Q['Player'].p);
       Q.compileSheets("sprite.png","sprites.json");
       Q.compileSheets("soldier.png","soldier.json");
       Q.compileSheets("pisos.png","pisos.json");
