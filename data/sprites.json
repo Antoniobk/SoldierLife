@@ -1,35 +1,7 @@
-{"player": {
-  "sx": 0,
-  "sy": 0,
-  "cols": 9,
-  "tilew": 32,
-  "tileh": 32,
-  "frames": 9
-}, "enemy": {
-  "sx": 0,
-  "sy": 32,
-  "cols": 6,
-  "tilew": 32,
-  "tileh": 32,
-  "frames": 6
-}, "portal": {
-  "sx": 3,
-  "sy": 67,
-  "cols": 1,
-  "tilew": 27,
-  "tileh": 27,
-  "frames": 1
-}, "dot": {
-  "sx": 0,
-  "sy": 96,
-  "cols": 1,
-  "tilew": 32,
-  "tileh": 32
-}, "fire": {
-  "sx": 8,
-  "sy": 139,
-  "cols": 1,
-  "tilew": 14,
-  "tileh": 11,
-  "frames": 1
-}}
+{
+  "enemy": { "sx": 0, "sy": 0, "cols": 9, "tilew": 32, "tileh": 32, "frames": 9},
+  "portal": { "sx": 0, "sy": 32, "cols": 1, "tilew": 32, "tileh": 32, "frames": 1},
+  "portal1": { "sx": 32, "sy": 32, "cols": 1, "tilew": 32, "tileh": 32, "frames": 1},
+  "portal2": { "sx": 64, "sy": 32, "cols": 1, "tilew": 32, "tileh": 32, "frames": 1},
+  "fire": { "sx": 8, "sy": 75, "cols": 1, "tilew": 13, "tileh": 9, "frames": 1}
+}
